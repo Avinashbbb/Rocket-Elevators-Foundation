@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_25_023045) do
+ActiveRecord::Schema.define(version: 2022_07_27_040437) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "address_type", null: false
@@ -77,6 +77,12 @@ ActiveRecord::Schema.define(version: 2022_07_25_023045) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_buildings_on_customer_id"
+  end
+
+  create_table "cache_memories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "selectedCustomer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "columns", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -151,11 +157,13 @@ ActiveRecord::Schema.define(version: 2022_07_25_023045) do
   end
 
   create_table "interventions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "author"
     t.string "interventionDateStart", null: false
     t.string "interventionDateEnd", null: false
     t.string "result", null: false
     t.string "report"
     t.string "status", null: false
+    t.bigint "customer_id"
     t.bigint "employee_id"
     t.bigint "building_id"
     t.bigint "batterie_id"
@@ -164,6 +172,7 @@ ActiveRecord::Schema.define(version: 2022_07_25_023045) do
     t.index ["batterie_id"], name: "index_interventions_on_batterie_id"
     t.index ["building_id"], name: "index_interventions_on_building_id"
     t.index ["column_id"], name: "index_interventions_on_column_id"
+    t.index ["customer_id"], name: "index_interventions_on_customer_id"
     t.index ["elevator_id"], name: "index_interventions_on_elevator_id"
     t.index ["employee_id"], name: "index_interventions_on_employee_id"
   end
@@ -218,18 +227,5 @@ ActiveRecord::Schema.define(version: 2022_07_25_023045) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-  add_foreign_key :employees, :users
-  add_foreign_key :batteries, :buildings
-  add_foreign_key :buildings, :customers
-  add_foreign_key :building_details, :buildings
-  add_foreign_key :elevators, :columns
-  add_foreign_key :leads, :customers
-  add_foreign_key :quotes, :users
-  add_foreign_key :customers, :users
-  # add_foreign_key :columns, :batteries
-  add_foreign_key :interventions, :employees
-  add_foreign_key :interventions, :buildings
-  # add_foreign_key :interventions, :batteries
-  add_foreign_key :interventions, :columns
-  add_foreign_key :interventions, :elevators
+
 end

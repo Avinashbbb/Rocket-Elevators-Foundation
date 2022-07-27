@@ -1,7 +1,7 @@
 require "faker"
 require 'json'
 file = File.read('lib/assets/addresses-us-250.min.json')
-data_hash = JSON.parse(file)
+data = JSON.parse(file)
 
 # Lead.delete_all
 # Lead.connection.execute('ALTER TABLE buildings AUTO_INCREMENT = 1')
@@ -77,10 +77,10 @@ Employee.create!(firstNname: 'Kiril', lastName: 'Kleinerman',title: 'I <3 Winnip
 Employee.create!(firstNname: 'Felicia', lastName: 'Hartono',title: 'Scrums are too early', user_id: 9 )
 Employee.create!(firstNname: 'Eileen', lastName: 'Ai',title: 'They really are.', user_id: 10 )
 
-10.times do
+30.times do
 
 for p in 0..2 do
-    addresse = data_hash["addresses"][p]
+    addresse = data["addresses"][p]
     if addresse["city"].nil?
         city = "N/A"
     else
@@ -195,6 +195,7 @@ batterieOBJ = Batterie.create!(
         building_id: buildingOBJ.id,
         batterie_id: batterieOBJ.id,
         column_id: columnOBJ.id,
+        customer_id: customerOBJ.id,
         elevator_id: elevatorOBJ.id,
         interventionDateStart: Faker::Date.between(from: '2022-01-01', to: '2022-3-1'),
         interventionDateEnd: Faker::Date.between(from: '2022-4-01', to: '2022-6-1'),

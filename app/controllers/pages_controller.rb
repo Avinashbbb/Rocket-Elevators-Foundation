@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  
   def home
   end
   def back
@@ -9,6 +10,7 @@ class PagesController < ApplicationController
   end
   def quote
   end
-  # def admin
-  # end
+  
+
+  
 end

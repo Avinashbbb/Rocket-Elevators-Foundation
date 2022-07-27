@@ -1,0 +1,11 @@
+<div>
+      <select id = "building" >
+      <%@selectedCustomer = params[:selectedCustomer]%>
+        <option ><%=@selectedCustomer%></option>
+        <%# building = Customer.find_by(fullName: "Janay Stamm Ret.").buildings%>
+        <%#for i in 0..building.count%>
+        <%# <option ><%#building[i].full_name_technical_authority %></option> %>
+        <%#end%>      
+      </select>
+      <%=@selectedCustomer%>
+</div>

@@ -1,6 +1,10 @@
 class CustomersController < ApplicationController
   before_action :authenticate_user!
+    def index
+      
+    end
     def create
+        
 
         pp "hello we r in"
         pp " "
