@@ -109,7 +109,7 @@ gem 'carrierwave-dropbox'
 	
 gem 'freshdesk-api-v2-rails'
 
-#gem 'net-http'
-
+#gem 'net-http', '~> 0.2.0'
+gem 'net-http', '>= 0.1', '<= 0.2.0'
 
 gem 'rest-client'
