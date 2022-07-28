@@ -239,6 +239,7 @@ GEM
     mysql2 (0.5.4)
     nested_form (0.3.2)
     net-http (0.2.2)
+      uri
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (7.0.1)
@@ -381,6 +382,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8.2)
+    uri (0.11.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (3.7.0)
