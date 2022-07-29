@@ -65,9 +65,9 @@ RailsAdmin.config do |config|
   end
   
   config.navigation_static_links = {
-    'Play Briefing' => 'rails_admin/data/playbriefing',
-    'Google Maps' => 'pages/customers_location',
-    'Interventions' => 'interventions/new'
+    'Play Briefing' => '/rails_admin/data/playbriefing',
+    'Google Maps' => '/pages/customers_location',
+    'Interventions' => '/interventions/new'
   }
 
   

@@ -78,11 +78,17 @@ FRESHDESK - Freshdesk helps wesites manage client tickets. We use Freshdesk in o
 Amazon Polly - Amazon Polly is used to have a text to speach portion in the admin panel where an admin can get an up to date situation of rocket elevators
 
 
--- Crew members of this project --
+------------------------------------------------------------------
+API FOR INTERVENTIONS
+-----------------------------------------------------------------
+To get the status of the elevator that has a start date as null
+The status in the database are Active and Inactive. So please only use those status to get the approate results
 
 
-Avinash Gopalakrishnan,
-Speed Jockey - Tanim Khondaker,
-Carlos - Carlos Alexis Almanzar,
-Black Mate - Razak Adegoke,
+Get
+http://apicsharpavinash.herokuapp.com/api/Intervention/("enter status here")
 
+PUT
+http://apicsharpavinash.herokuapp.com/api/Intervention/("enter the ID of the intervention that needs to be modified")/("status you want to change to")/start/("enter start date that you want to change to")
+PUT
+http://apicsharpavinash.herokuapp.com/api/Intervention/("enter the ID of the intervention that needs to be modified")/("status you want to change to")/end/("enter end date that you want to change to")
