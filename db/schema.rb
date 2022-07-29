@@ -158,11 +158,11 @@ ActiveRecord::Schema.define(version: 2022_07_27_040437) do
 
   create_table "interventions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "author"
-    t.string "interventionDateStart", null: false
-    t.string "interventionDateEnd", null: false
-    t.string "result", null: false
+    t.string "interventionDateStart"
+    t.string "interventionDateEnd"
+    t.string "result"
     t.string "report"
-    t.string "status", null: false
+    t.string "status"
     t.bigint "customer_id"
     t.bigint "employee_id"
     t.bigint "building_id"

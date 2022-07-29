@@ -7,12 +7,12 @@ class CreateInterventions < ActiveRecord::Migration[5.2]
       t.string :result, null: false
       t.string :report
       t.string :status, null: false
-      t.belongs_to :customer
-      t.belongs_to :employee
-      t.belongs_to :building
-      t.belongs_to :batterie
-      t.belongs_to :column
-      t.belongs_to :elevator
+      t.integer :customer
+      t.integer :employee , null: true
+      t.integer :building , null: true
+      t.integer :batterie , null: true
+      t.integer :column , null: true
+      t.integer :elevator , null: true
 
      
     end

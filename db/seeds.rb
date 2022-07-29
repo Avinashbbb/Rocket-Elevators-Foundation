@@ -77,7 +77,24 @@ Employee.create!(firstNname: 'Kiril', lastName: 'Kleinerman',title: 'I <3 Winnip
 Employee.create!(firstNname: 'Felicia', lastName: 'Hartono',title: 'Scrums are too early', user_id: 9 )
 Employee.create!(firstNname: 'Eileen', lastName: 'Ai',title: 'They really are.', user_id: 10 )
 
-30.times do
+10.times do
+    customerOBJ = Customer.create!(
+        user_id: rand(10)+1,
+        #companyHqAddresse: addresse['address1'] + " " + addresse['city'],
+        dateCreation: Faker::Date.between(from: '2022-01-01', to: '2022-12-31'),
+        created_at: Faker::Date.between(from: '2022-01-01', to: '2022-12-31'),
+        companyName: Faker::Company.name,
+        fullName: Faker::Name.name,
+        contactPhone: Faker::Config.locale = 'en-CA',
+        email: Faker::Internet.email,
+        description: Faker::Lorem.sentence,
+        fullNameTechnicalAuthority: Faker::Name.name,
+        technicalAuthorityPhone: Faker::Config.locale = 'en-CA',
+        technicalAuthorityEmail: Faker::Internet.email
+        )
+end
+
+50.times do
 
 for p in 0..2 do
     addresse = data["addresses"][p]
@@ -101,25 +118,12 @@ for p in 0..2 do
         )
  end
 
-usertmp = User.create!(email: Faker::Internet.email ,password: '123456')
+#usertmp = User.create!(email: Faker::Internet.email ,password: '123456')
 
-customerOBJ = Customer.create!(
-        user_id: usertmp.id,
-        companyHqAddresse: addresse['address1'] + " " + addresse['city'],
-        dateCreation: Faker::Date.between(from: '2022-01-01', to: '2022-12-31'),
-        created_at: Faker::Date.between(from: '2022-01-01', to: '2022-12-31'),
-        companyName: Faker::Company.name,
-        fullName: Faker::Name.name,
-        contactPhone: Faker::Config.locale = 'en-CA',
-        email: Faker::Internet.email,
-        description: Faker::Lorem.sentence,
-        fullNameTechnicalAuthority: Faker::Name.name,
-        technicalAuthorityPhone: Faker::Config.locale = 'en-CA',
-        technicalAuthorityEmail: Faker::Internet.email
-        )
+
 
 buildingOBJ = Building.create!(
-        customer_id: customerOBJ.id,
+        customer_id: rand(10)+1,
         addressOfBuilding: i.numberAndStreet + " " + i.city,
         full_name_building_admin: Faker::Name.name,
         email_building_admin: Faker::Internet.email,
@@ -176,7 +180,7 @@ batterieOBJ = Batterie.create!(
         )
         puts "hisss"
     Lead.create!(
-        customer_id: customerOBJ.id,
+        customer_id: rand(10)+1,
         fullNameContact: Faker::Name.name,
         companyName: Faker::Company.name,
         email: Faker::Internet.email,
@@ -195,7 +199,7 @@ batterieOBJ = Batterie.create!(
         building_id: buildingOBJ.id,
         batterie_id: batterieOBJ.id,
         column_id: columnOBJ.id,
-        customer_id: customerOBJ.id,
+        customer_id: rand(10)+1,
         elevator_id: elevatorOBJ.id,
         interventionDateStart: Faker::Date.between(from: '2022-01-01', to: '2022-3-1'),
         interventionDateEnd: Faker::Date.between(from: '2022-4-01', to: '2022-6-1'),

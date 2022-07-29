@@ -7,7 +7,7 @@
         <label>Please select the customer from below.</label>
           <select id = "selectedCustomer">
               <%customerNames = @customers.map { |c| c.fullName}%>
-              <option >--Select--</option>
+              <option value ="N/A">--Select--</option>
               <%for i in 0..customerNames.count%>
               <option ><%=customerNames[i]%></option>
               <%end%>
@@ -17,28 +17,32 @@
       <div>
         <label>Please select the building of the customer.</label>
           <select id = "selectedBuilding" >
-            <option >--Select--</option>
+            <option value ="N/A">--Select--</option>
+            <option value = 0 >N/A</option>
           </select>
       </div>
 
       <div>
       <label>Please select the battery of the building.</label>
           <select id = "selectedBattery">
-            <option >--Select--</option>
+            <option value ="N/A" >--Select--</option>
+            <option value = 0 >N/A</option>
           </select>
       </div>
 
       <div>
       <label>Please select the column of the battery.</label>
           <select id = "selectedColumn">
-            <option >--Select--</option>
+            <option value ="N/A" >--Select--</option>
+            <option value = 0 >N/A</option>
           </select>
       </div>
 
       <div>
         <label>Please select the elevator of the column.</label>
         <select id = "selectedElevator">
-        <option >--Select--</option>
+        <option value ="N/A">--Select--</option>
+        <option value = 0 >N/A</option>
         </select>
       </div>
 
@@ -50,7 +54,7 @@
 
       <div>
         <label>Description<label>
-        <input type = "text", id ="description">
+        <textarea type = "text", id ="description" rows="5" cols="50"></textarea>
       </div>
 
       <div id = 'submit'>
@@ -58,11 +62,7 @@
       </div>
     </div> 
 
-      <div class = "col">
-      <label>Elobrate data will appear here.</label>
-      <textarea readonly="readonly" id="readonly" rows="25" cols="50">
-      </textarea>
-      </div>
+      
   </div>
 </div>
 

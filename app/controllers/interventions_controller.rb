@@ -59,7 +59,7 @@ end
     @intervention = Intervention.new
     @intervention.result = "Incomplete"
     @intervention.status = "pending"
-    @intervention.authour = warden.user.email
+    @intervention.author = warden.user.email
     @intervention.report = params[:description]
     @intervention.customer_id = Customer.find_by(fullName: params[:customer]).id
     @intervention.employee_id = params[:employeeId]
@@ -69,9 +69,38 @@ end
     @intervention.elevator_id = params[:elevatorId]
     @intervention.interventionDateStart = "nil"
     @intervention.interventionDateEnd = "nil"
-    @intervention.save
+    @intervention.save!
     pp "saved"
     render plain: @intervention.to_json 
+
+    
+
+      pp 'creating a fresh desk ticket'
+       data = {
+        status: 2, 
+        priority: 1,
+        subject: "Ticket from intervention",
+        email: "#{warden.user.email}",
+        description: " # author:#{ @intervention.author}, 
+        # customer_id: #{@intervention.customer_id},
+        # building_id: #{@intervention.building_id},
+        # column_id: #{@intervention.column_id},
+        # elevator_id: #{@intervention.elevator_id},
+        # employee_assined: #{@intervention.employee_id},
+        # description: #{@intervention.report} "
+      }
+  
+      data_json = JSON.generate(data)
+      pp data_json
+      request = RestClient::Request.execute(
+        method: :post,
+        url: 'https://rocketelevators8511.freshdesk.com/api/v2/tickets',
+        user: "lPFycE5dWcZGWOXdhvV",
+        password: 'X',
+        payload: data_json,
+        headers: {"Content-Type" => 'application/json'}
+      )
+    
   end
 
   

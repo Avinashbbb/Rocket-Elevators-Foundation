@@ -1,7 +1,7 @@
 function getCustomerBuildings() {
   let selectedCustomer =$("#selectedCustomer").val()
    res = $.ajax({
-    url: 'http://localhost:3000/interventions/customer_buildings',
+    url: 'customer_buildings',
     method: 'GET',
     async: true,
     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
@@ -10,9 +10,9 @@ function getCustomerBuildings() {
     },
     dataType: 'json',
     success: function (result) {
-      display(result)
       console.log(1)
       $("#selectedBuilding").empty()
+      $('#selectedBuilding').append("<option value = 0 >N/A</option>")
       for(let i=0; i<Object.keys(result).length;i++){
         $("#selectedBuilding").append("<option value=" + result[i].id + ">" + result[i].addressOfBuilding + "</option>");
       }
@@ -24,7 +24,7 @@ function getCustomerBuildings() {
 function getBuildingbatteries() {
   let selectedBuildingId =$("#selectedBuilding").val()
    res = $.ajax({
-    url: 'http://localhost:3000/interventions/building_battery',
+    url: 'building_battery',
     method: 'GET',
     async: true,
     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
@@ -36,7 +36,7 @@ function getBuildingbatteries() {
       console.log(2)
       console.log(JSON.parse(JSON.stringify(result)))
       $("#selectedBattery").empty()
-      $('#selectedBattery').append("<option >None</option>")
+      $('#selectedBattery').append("<option value = 0 >N/A</option>")
         $("#selectedBattery").append("<option value=" + result.id + ">" + result.id+ "</option>");
     }
   })
@@ -45,7 +45,7 @@ function getBuildingbatteries() {
 function getbatterycolumn() {
   let selectedBatteryId =$("#selectedBattery").val()
    res = $.ajax({
-    url: 'http://localhost:3000/interventions/battery_column',
+    url: 'battery_column',
     method: 'GET',
     async: true,
     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
@@ -56,7 +56,7 @@ function getbatterycolumn() {
     success: function (result) {
       console.log(3)
       $("#selectedColumn").empty()
-      $('#selectedColumn').append("<option >None</option>")
+      $('#selectedColumn').append("<option value = 0 >N/A</option>")
       for(let i=0; i<result.length;i++){
         $("#selectedColumn").append("<option value=" + result[i].id + ">" + result[i].id + "</option>");
       }
@@ -67,7 +67,7 @@ function getbatterycolumn() {
 function getColumnElevator(){
   let selectedcolumnId = $("#selectedColumn").val()
   res = $.ajax({
-    url: 'http://localhost:3000/interventions/column_elevator',
+    url: 'column_elevator',
     method: "GET",
     async: true,
     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
@@ -79,7 +79,7 @@ function getColumnElevator(){
       console.log(4)
       console.log(result)
       $("#selectedElevator").empty()
-      $("#selectedElevator").append("<option >None</option>")
+      $("#selectedElevator").append("<option value = 0 >N/A</option>")
       for(let i=0; i <result.length;i++){
          $("#selectedElevator").append("<option value=" + result[i].id + ">" + result[i].id + "</option>");
       }
@@ -89,7 +89,7 @@ function getColumnElevator(){
 
 function employee(){
   res = $.ajax({
-    url: 'http://localhost:3000/interventions/employee',
+    url: 'employee',
     method: 'GET',
     async: true,
     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
@@ -103,6 +103,7 @@ function employee(){
 }
 
 function submit(){
+  console.log("hello")
   let customer = $("#selectedCustomer").val()
   let buildingId = $("#selectedBuilding").val()
   let batteryId = $("#selectedBattery").val()
@@ -110,9 +111,14 @@ function submit(){
   let elevatorId = $("#selectedElevator").val()
   let employeeId = $("#employee").val()
   let description = $("#description").val()
+
+
+  if ( customer == "N/A"||buildingId =="N/A"||batteryId == "N/A"||columnId == "N/A"||elevatorId == "N/A"||employeeId == "N/A"){
+    alert("Intervention has not been saved as some of the fields are 'N/A'. Please fill out all the details and try again !!")
+  }
   
   res = $.ajax({
-    url:'http://localhost:3000/interventions/create',
+    url:'create',
     method: "POST",
     async: true,
     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
@@ -134,12 +140,7 @@ function submit(){
 
 
 
-function display(result){
-  
-  let displaytest = JSON.parse(JSON.stringify(result))
-  let displayfinal = JSON.stringify(displaytest)
-  $("#readonly").append(displayfinal)
-}
+
 
 
 
