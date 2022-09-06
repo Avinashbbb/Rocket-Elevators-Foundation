@@ -10,6 +10,8 @@ gem 'owlcarousel-rails'
 gem 'rails', '~> 5.2.8'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5.3'
+gem 'figaro'
+
 # Use Puma as the app server
 gem 'puma', '~> 4.3.11'
 # Use SCSS for stylesheets

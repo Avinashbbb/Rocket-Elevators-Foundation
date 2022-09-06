@@ -1,28 +1,54 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.17.0"
 
-set :rbenv_type, :user # or :system, or :fullstaq (for Fullstaq Ruby), depends on your rbenv setup
-set :rbenv_ruby, File.read('.ruby-version').strip
-set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
-set :rbenv_map_bins, %w{rake gem bundle ruby rails puma pumactl}
-set :rbenv_roles, :all # default value
+# set :rbenv_type, :user # or :system, or :fullstaq (for Fullstaq Ruby), depends on your rbenv setup
+# set :rbenv_ruby, File.read('.ruby-version').strip
+# set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+# set :rbenv_map_bins, %w{rake gem bundle ruby rails puma pumactl}
+# set :rbenv_roles, :all # default value
 
 set :application, "Avinash_Gopalakrishnan"
 set :repo_url, "https://github.com/Avinashbbb/Rocket-Elevators-Foundation.git"
+set :deploy_to, '/home/deploy/aws-rails'
 
 
-before "deploy:assets:precompile", "deploy:yarn_install"
+set :linked_files, %w{config/database.yml}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
 
 namespace :deploy do
-    desc 'Run rake yarn:install'
-    task :yarn_install do
-        on roles(:web) do
-            within release_path do
-                execute("cd #{release_path} && yarn install")
-            end
+    desc 'Restart application'
+    task :restart do
+        on roles(:app), in: :sequence, wait: 5 do
+            execute :touch, release_path.join('tmp/restart.txt')
         end
     end
+
+    after :publishing, 'deploy:restart'
+    after :finishing, 'deploy:cleanup'
 end
+# before "deploy:assets:precompile", "deploy:yarn_install"
+
+# namespace :deploy do
+#     desc 'Run rake yarn:install'
+#     task :yarn_install do
+#         on roles(:web) do
+#             within release_path do
+#                 execute("cd #{release_path} && yarn install")
+#             end
+#         end
+#     end
+# end
+
+
+
+
+
+
+
+
+
+
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
