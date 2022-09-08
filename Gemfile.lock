@@ -265,8 +265,6 @@ GEM
     rack-pjax (1.1.0)
       nokogiri (~> 1.5)
       rack (>= 1.1)
-    rack-proxy (0.7.2)
-      rack
     rack-test (2.0.2)
       rack (>= 1.3)
     rails (5.2.8.1)
@@ -348,7 +346,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    semantic_range (3.0.0)
     sendgrid-ruby (6.6.2)
       ruby_http_client (~> 3.4)
     slack-notifier (2.4.0)
@@ -392,11 +389,6 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webpacker (5.4.3)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
     websocket (1.2.9)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
@@ -456,7 +448,6 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
-  webpacker
 
 RUBY VERSION
    ruby 2.7.6p219
