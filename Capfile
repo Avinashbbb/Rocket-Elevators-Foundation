@@ -7,5 +7,5 @@ set :rbenv_type, :user
 set :rbenv_ruby, '2.7.6'
 
 require 'capistrano/scm/git'
-install_plugin Capistrano::SCM::GIT 
+install_plugin Capistrano::SCM::Git 
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r}
