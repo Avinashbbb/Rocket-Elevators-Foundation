@@ -60,7 +60,7 @@ Rails.application.configure do
 
   #To set asset compression methods, set the appropriate configuration options in production.rb - config.assets.css_compressor for your CSS and config.assets.js_compressor for your JavaScript:
   config.assets.css_compressor = :yui
-  config.assets.js_compressor = :terser
+  #config.assets.js_compressor = :terser
 
 
   # Use a different cache store in production.
