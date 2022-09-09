@@ -428,7 +428,7 @@ DEPENDENCIES
   jquery
   jquery-rails
   jquery-ui-rails
-  listen (>= 3.0.5, < 3.2)
+  listen
   mysql2 (~> 0.5.3)
   owlcarousel-rails
   pg (~> 1.4)
